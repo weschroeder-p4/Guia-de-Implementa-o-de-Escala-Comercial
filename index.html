@@ -141,7 +141,7 @@ section{position:relative}
 .hero-grid{display:grid;grid-template-columns:.92fr 1.08fr;grid-template-areas:"text mockup" "badges mockup";gap:26px 52px;align-items:center}
 .hero-text{grid-area:text}.hero-badges{grid-area:badges}.hero-visual{grid-area:mockup}
 .hero-shot{width:100%;max-width:660px;height:auto;margin:0 auto;filter:drop-shadow(0 34px 60px rgba(8,16,28,.5)) drop-shadow(0 12px 24px rgba(8,16,28,.32))}
-.hero h1{font-size:clamp(2rem,4.6vw,3.5rem);font-weight:700;margin:22px 0 18px}
+.hero h1{font-size:clamp(2rem,4.6vw,3.5rem);font-weight:700;margin:0 0 18px}
 .hero p.sub{font-size:clamp(1rem,1.6vw,1.16rem);color:var(--muted);max-width:520px;margin:0 0 28px}
 .badges{display:flex;flex-wrap:wrap;gap:12px}
 .badge{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);padding:13px 20px;border-radius:6px;font-weight:600;font-size:.96rem}
@@ -498,6 +498,8 @@ footer .links a:hover{text-decoration:underline}
   .hero h1{font-size:1.72rem}
   .mobile-cta{font-size:.95rem}
 }
+.tag::before,.pricecard .vital::before{display:none!important}
+.tag,.pricecard .vital{gap:0}
 </style>
 </head>
 <body>
@@ -512,8 +514,7 @@ footer .links a:hover{text-decoration:underline}
   <div class="wrap">
     <div class="hero-grid">
       <div class="hero-text">
-        <span class="tag reveal">O método das minhas mentorias de +R$ 15 mil</span>
-        <h1 class="reveal d1">Pare de depender da sorte para vender. Instale uma <span class="green">escala comercial previsível</span> na sua empresa</h1>
+                <h1 class="reveal d1">Pare de depender da sorte para vender. Instale uma <span class="green">escala comercial previsível</span> na sua empresa</h1>
         <p class="sub reveal d2">O mesmo <strong>modelo replicável</strong> que eu entrego nas minhas mentorias por mais de R$ 15.000 — organizado em um kit completo de implementação: guia, plano de ação, planilha de métricas, apresentação e scripts. <strong>Você paga uma única vez.</strong></p>
       </div>
       <div class="hero-visual reveal d4">
@@ -853,7 +854,6 @@ footer .links a:hover{text-decoration:underline}
   </div>
 </footer>
 
-<a href="https://pay.hotmart.com/C107767987J" class="mobile-cta hide" id="mcta">Quero o método <span class="p">· 8x R$ 9,70</span> →</a>
 
 <script>
 const io=new IntersectionObserver((entries)=>{
@@ -869,15 +869,6 @@ document.querySelectorAll('.faq-q').forEach(q=>{
   });
 });
 
-// sticky mobile CTA: hide when an offer button or the footer is visible
-(function(){
-  var mcta=document.getElementById('mcta'); if(!mcta) return;
-  var watch=document.querySelectorAll('a.btn, footer'); var vis=new Set();
-  function upd(){mcta.classList.toggle('hide', vis.size>0 || window.scrollY<560);}
-  var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)vis.add(e.target);else vis.delete(e.target);});upd();},{threshold:0.2});
-  window.addEventListener('scroll',upd,{passive:true}); upd();
-  watch.forEach(function(el){io2.observe(el);});
-})();
 
 function tick(){
   const now=new Date();const end=new Date(now);end.setHours(23,59,59,0);
