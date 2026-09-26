@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gec.p4gestao.com.br/sitemap.xml
